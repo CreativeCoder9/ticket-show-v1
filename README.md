@@ -1,6 +1,6 @@
-# Ticket Show v2
+# Ticket Show v1
 
-Ticket Show v2 is a Flask-based web application for managing venues, shows, and ticket bookings. It includes a browser UI for users and admins, a SQLite-backed data layer, and REST-style API endpoints for venues and shows. It's an upgraded version of Ticket Show application developed for the MAD-2 course of IITM BS Degree.
+Ticket Show v1 is a Flask-based web application for managing venues, shows, and ticket bookings. It includes a browser UI for users and admins, a SQLite-backed data layer, and REST-style API endpoints for venues and shows. It's an upgraded version of Ticket Show application developed for the MAD-1 course of IITM BS Degree.
 
 ## Features
 
