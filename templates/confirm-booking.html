@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+    <div class="container">
+        <img src="{{url_for('static',filename='logo.png')}}" width="194" height="66">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+        <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/dashboard"> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/bookings">Your Bookings</a></li>
+            </ul>
+            <a class="btn btn-primary shadow" role="button" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<section id="confirmBooking" class="container container-fluid min-vh-100">
+  <div class="container-fluid">
+   <div id = "add-venue-form" class="container h-100 d-flex justify-content-center  align-items-center">
+      <div class="jumbotron my-auto">
+         <h1 class="display-4 fw-bold underline">{{show.show_name}} Booking!</h1>
+        <span class="pe-3">Available Seats:{{available_seats}}</span>
+        <span class="pe-3">Show Time: {{show.show_starting_time}} to {{show.show_ending_time}}</span>
+         <form action="{{url_for('confirmBookings', show_id=show.show_id)}}" method="POST">
+            <div class="form-group">
+               <input name="show_id" type="hidden" value="{{show.show_id}}">
+            </div>
+           <div class="form-group">
+              <label for="showName"> Number of bookings</label>
+             <input name="num_bookings" type="text" class= "form-control" id="showName" min="1">
+           </div>
+           <div class="form-group">
+              <label for="showRating">Ticket Price</label>
+             <input name=" ticket_price" type="text" class= "form-control" disabled value="{{ticket_price}}">
+           </div>
+            <button id="add-venue-button" type="submit" class="btn btn-primary">Confirm Booking!</button>
+         </form>
+      </div>
+   </div>
+</div>
+</div>
+</section>
+{% endblock %}

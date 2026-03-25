@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="bookings" class="container contaomer-fluid pb-5 min-vh-100">
+  <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+    <div class="container">
+        <img src="../static/images/Ticket%20Show%20Logo.png" width="194" height="66">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+        <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/dashboard"> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin"> Admin Dashboard</a></li>
+              {%if not logged_in %}
+                <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+              {% endif %}
+            </ul>
+            {%if logged_in %}
+            <a class="btn btn-primary shadow" role="button" href="/logout">Logout</a>
+            {% else %}
+            <a class="btn btn-primary shadow" role="button" href="/admin-login">For Admin</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+  {%if shows%}
+  <div class="row container my-3">
+    <div class="col">
+        <h1 class="text-center underline">Shows by time!</h1>      
+    </div>
+  </div>
+  {% for show in shows%}
+ <div class="row">
+   <div class="col">
+      <ul class="list-group d-flex align-items-center">
+         <li class="list-group-item">
+           <img src="{{show.show_img}}" class="me-2" width="50" alt="...">
+           <span class="fw-bold">{{show.show_name}}, </span>
+           <span>Show starts at {{show.show_starting_time}}</span>
+           <a href="/bookings/{{show.show_id}}/confirm" class="btn btn-primary m-5 shadow">Book It!</a>
+         </li>
+      </ul>
+   </div>
+ </div>
+ {% endfor %}
+ {% else%}
+ <div class="alert alert-danger text-center" role="alert">
+  No Show Found!
+  </div>
+ {% endif %}
+</section>
+ 
+{% endblock %}

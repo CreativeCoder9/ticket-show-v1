@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+    <div class="container">
+        <img src="../static/images/Ticket%20Show%20Logo.png" width="194" height="66">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+        <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin">Admin Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/add-show"> Add a Show</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/add-venue">Add a Venue</a></li>
+            </ul>
+            <a class="btn btn-primary shadow" role="button" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid mb-5">
+   <div id = "add-venue-form" class="row justify-content-center">
+      <div class="col-5 card my-auto">
+         <h2 class="display-5 fw-bold p-4 underline">Add a Venue!</h2>
+         <form action={{url_for('add_venue')}} method="POST" enctype="multipart/form-data">
+           <div class="form-group">
+              <label for="venueName"> Venue Name</label>
+             <input name="name" type="text" class= "form-control" id="venueName">
+           </div>
+           <div class="form-group">
+              <label for="venueLocation"> Venue Location</label>
+             <input name="location" type="text" class= "form-control" id="venueLocation">
+           </div>
+           <div class="form-group">
+              <label for="venueLocation"> Venue capacity</label>
+             <input name="capacity" type="number" class= "form-control" id="venueLocation" min="0">
+           </div>
+           <div class="form-group">
+              <label for="banner"> Upload an image</label>
+             <input name="banner" type="file" class= "form-control" id="banner">
+             <small>An image of the venue</small>
+           </div>
+            <button id="add-venue-button" type="submit" class="btn btn-primary">Submit</button>
+         </form>
+      </div>
+   </div>
+</div>
+</div>
+{% endblock %}

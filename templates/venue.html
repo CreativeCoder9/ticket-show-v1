@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .venue-shows {
+    width: 50px;
+    display:inline;
+  }
+  .venue-show-info {
+    display:inline;
+  }
+</style>
+
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+    <div class="container">
+        <img src="../static/images/Ticket%20Show%20Logo.png" width="194" height="66">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+        <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="/index">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/dashboard"> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin"> Admin</a></li>
+              {%if not logged_in %}
+                <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+              {% endif %}
+            </ul>
+            {%if logged_in %}
+            <a class="btn btn-primary shadow" role="button" href="/logout">Logout</a>
+            {% else %}
+            <a class="btn btn-primary shadow" role="button" href="/admin-login">For Admin</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<!-- Venue -->
+<section id="venues" class="mb-5 pb-5">
+   <h2 class="text-center underline">Venue Info</h2>
+   <div class="row mt-4 align-items-start pt-3">
+<!--      venue coulum -->
+      <div class="card col-3 mx-2">
+           <ul class="list-group p-2">
+              <li class="list-group-item fw-bold" aria-disabled="true" style="background-image:url('{{venue.venue_img}}'); background-size:cover;">{{venue.venue_name}}</li>
+              <li class="list-group-item">Place: {{venue.venue_location}}</li>  
+              <li class="list-group-item">Capacity: {{venue.venue_capacity}}</li>
+            </ul>
+        </div>
+<!--     Shows column -->
+     <div class="col-8 mb-5">
+       <div class="row">
+         {% if shows%}
+         {% for show in shows %}
+         <div class="col-4 my-1">
+         <div class="card p-1">
+           <img src="{{show.show_img}}" class="card-img-top" alt="...">
+           <div class="card-body">
+             <ul class="list-group">
+               <li class="list-group-item"><a href="#">{{show.show_name}}, {{show.show_rating}}⭐</a></li>
+               <li class="list-group-item"><a href="#">Price: {{show.show_price}}</a></li>
+               <li class="list-group-item"><a href="/bookings/{{show.show_id}}/confirm">Book this show!</a></li>
+             </ul>
+           </div>
+         </div>
+         </div>
+         {% endfor %}
+         {% else %}
+         <div class="alert alert-danger text-center" role="alert">
+  <p>No Shows found!</p>
+          </div>
+         
+         {% endif %}
+       </div>
+     </div>
+   </div> 
+</section>
+<!-- Shows -->
+{% endblock %}

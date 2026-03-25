@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+    <div class="container">
+        <img src="../static/images/Ticket%20Show%20Logo.png" width="194" height="66">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+        <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/add-show"> Add a Show</a></li>
+                <li class="nav-item"><a class="nav-link" href="/add-venue">Add a Venue</a></li>
+            </ul>
+            <a class="btn btn-primary shadow" role="button" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid min-vh-100">
+   <div id = "add-venue-form" class="container pb-5 mb-5 row justify-content-center">
+      <div class="my-auto card col-5">
+         <h1 class="fw-bold p-4 display-5">Add a Show!</h1>
+         <form action={{url_for('add_show')}} method="POST" enctype="multipart/form-data">
+           <div class="form-group">
+              <label for="showName"> Show Name</label>
+             <input name="showName" type="text" class= "form-control" id="showName">
+           </div>
+           <div class="form-group">
+              <label for="showPrice">Show Price</label>
+             <input name="price" type="number" class= "form-control" id="showPrice" min="0">
+           <div class="form-group">
+              <label for="showRating">Initial show rating</label>
+             <input name="rating" type="number" class= "form-control" id="showRating" min="0">
+           </div>
+           <div class="form-group">
+              <label for="showStartingTime"> Show starting time</label>
+             <input name="startingTime" type="time" class= "form-control" id="showStartingTime">
+           </div>
+           <div class="form-group">
+              <label for="showEndingTime"> Show ending time</label>
+             <input name="endingTime" type="time" class= "form-control" id="showEndingTime">
+           </div>
+          <div class="form-group m-2">
+             <label for="venue">Venue</label>
+             <select id="venue" name="venue" class="dropdown px-4 py-2" required>
+               {% for venue in venues %}
+                <option class="dropdown-item p-4" value="{{venue.venue_id}}">{{venue.venue_name}}, {{venue.venue_location}}</option>
+               {% endfor %}
+             </select>
+           </div>
+             
+           <div class="form-group">  
+              <label for="showTags">Tags fot the show</label>
+             <input name="tags" type="text" class= "form-control" id="showTags">
+             <small>Write the tags separated with comma</small>
+           </div>
+           <div class="form-group">
+             <input name="poster" type="file" class= "form-control" id="banner">
+             <small>Upload a portait poster of the show</small>
+           </div>
+            <button id="add-venue-button" type="submit" class="btn btn-primary">Submit </button>
+         </form>
+      </div>
+   </div>
+</div>
+</div>
+{% endblock %}

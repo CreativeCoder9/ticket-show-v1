@@ -1,0 +1,379 @@
+swagger: '2.0'
+info:
+  description: Ticket show APIS for CRUD oprations
+  version: '1.0'
+  title: Ticket Show Apis
+paths:
+  /api/venues/2:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: Definition generated from Swagger Inspector
+          schema:
+            $ref: '#/definitions/Model7'
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/Model1'
+          x-examples:
+            application/json: |-
+              {
+                  "venue_capacity": 250,
+                  "venue_id": 2,
+                  "venue_img": "../static/uploads/Nandan_Screenshot_2023-04-09_174119.png",
+                  "venue_location": "Kolkata",
+                  "venue_name": "Nandana"
+              }
+      responses:
+        '200':
+          description: Definition generated from Swagger Inspector
+          schema:
+            $ref: '#/definitions/Model6'
+  /api/shows/1:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: Definition generated from Swagger Inspector
+          schema:
+            $ref: '#/definitions/Model11'
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/Model4'
+          x-examples:
+            application/json: |-
+              {
+                  "show_ending_time": "23:17",
+                  "show_id": 1,
+                  "show_img": "../static/uploads/Chander Pahar_chander_pahar.jpg",
+                  "show_name": "Chander Pahar by Bibhuti Bhusan Bandopadhya",
+                  "show_price": 250,
+                  "show_rating": 4,
+                  "show_starting_time": "18:19",
+                  "show_tags": "Action, Adventure, Drama",
+                  "show_venue": 1
+              }
+      responses:
+        '201':
+          description: Definition generated from Swagger Inspector
+          schema:
+            $ref: '#/definitions/Model10'
+  /api/shows:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/Model3'
+          x-examples:
+            application/json: |-
+              {
+                      "show_ending_time": "13:10",
+                      "show_img": "../static/uploads/Chander_Pahar_bahubali-poster.jpg",
+                      "show_name": "Bahubali",
+                      "show_price": 350,
+                      "show_rating": 5,
+                      "show_starting_time": "22:07",
+                      "show_tags": "Action, Adventure",
+                      "show_venue": 1
+                  }
+      responses:
+        '201':
+          description: Definition generated from Swagger Inspector
+          schema:
+            $ref: '#/definitions/Model12'
+  /api/venues:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/Model0'
+          x-examples:
+            application/json: |-
+              {
+                      "venue_capacity": 250,
+                      "venue_img": "../static/uploads/Nandan_Screenshot_2023-04-09_174119.png",
+                      "venue_location": "Kolkata",
+                      "venue_name": "Nandan"
+                  }
+      responses:
+        '201':
+          description: Definition generated from Swagger Inspector
+          schema:
+            $ref: '#/definitions/Model14'
+  /api/{param0}/1:
+    delete:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/Model2'
+          x-examples:
+            application/json: |-
+              {
+                  "show_ending_time": "23:17",
+                  "show_id": 1,
+                  "show_img": "../static/uploads/Chander Pahar_chander_pahar.jpg",
+                  "show_name": "Chander Pahar by Bibhuti Bhusan Bandopadhya",
+                  "show_price": 250,
+                  "show_rating": 4,
+                  "show_starting_time": "18:19",
+                  "show_tags": "Action, Adventure, Drama",
+                  "show_venue": 1
+              }
+        - name: param0
+          in: path
+          description: 'Example values form path are: ''venues'' and ''shows'''
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Definition generated from Swagger Inspector
+          schema:
+            $ref: '#/definitions/Model8'
+  /api/{param1}:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - name: param1
+          in: path
+          description: 'Example values form path are: ''shows'' and ''venues'''
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Definition generated from Swagger Inspector
+          schema:
+            $ref: '#/definitions/Model13'
+definitions:
+  Model0:
+    properties:
+      venue_capacity:
+        type: integer
+        format: int32
+      venue_img:
+        type: string
+      venue_location:
+        type: string
+      venue_name:
+        type: string
+  Model1:
+    properties:
+      venue_capacity:
+        type: integer
+        format: int32
+      venue_id:
+        type: integer
+        format: int32
+      venue_img:
+        type: string
+      venue_location:
+        type: string
+      venue_name:
+        type: string
+  Model2:
+    properties:
+      show_ending_time:
+        type: string
+      show_id:
+        type: integer
+        format: int32
+      show_img:
+        type: string
+      show_name:
+        type: string
+      show_price:
+        type: integer
+        format: int32
+      show_rating:
+        type: integer
+        format: int32
+      show_starting_time:
+        type: string
+      show_tags:
+        type: string
+      show_venue:
+        type: integer
+        format: int32
+  Model3:
+    properties:
+      show_ending_time:
+        type: string
+      show_img:
+        type: string
+      show_name:
+        type: string
+      show_price:
+        type: integer
+        format: int32
+      show_rating:
+        type: integer
+        format: int32
+      show_starting_time:
+        type: string
+      show_tags:
+        type: string
+      show_venue:
+        type: integer
+        format: int32
+  Model4:
+    properties:
+      show_ending_time:
+        type: string
+      show_id:
+        type: integer
+        format: int32
+      show_img:
+        type: string
+      show_name:
+        type: string
+      show_price:
+        type: integer
+        format: int32
+      show_rating:
+        type: integer
+        format: int32
+      show_starting_time:
+        type: string
+      show_tags:
+        type: string
+      show_venue:
+        type: integer
+        format: int32
+  Model6:
+    properties:
+      message:
+        type: string
+  Model7:
+    properties:
+      venue_capacity:
+        type: integer
+        format: int32
+      venue_id:
+        type: integer
+        format: int32
+      venue_img:
+        type: string
+      venue_location:
+        type: string
+      venue_name:
+        type: string
+  Model8:
+    properties:
+      message:
+        type: string
+  Model10:
+    properties:
+      message:
+        type: string
+  Model11:
+    properties:
+      show_ending_time:
+        type: string
+      show_id:
+        type: integer
+        format: int32
+      show_img:
+        type: string
+      show_name:
+        type: string
+      show_price:
+        type: integer
+        format: int32
+      show_rating:
+        type: number
+        format: double
+      show_starting_time:
+        type: string
+      show_tags:
+        type: string
+      show_venue:
+        type: integer
+        format: int32
+  Model12:
+    properties:
+      message:
+        type: string
+  Array:
+    properties:
+      show_ending_time:
+        type: string
+      show_id:
+        type: integer
+        format: int32
+      show_img:
+        type: string
+      show_name:
+        type: string
+      show_price:
+        type: integer
+        format: int32
+      show_rating:
+        type: number
+        format: double
+      show_starting_time:
+        type: string
+      show_tags:
+        type: string
+      show_venue:
+        type: integer
+        format: int32
+  Model13:
+    type: array
+    items:
+      $ref: '#/definitions/Array'
+  Model14:
+    properties:
+      message:
+        type: string
+  Model15_Array:
+    properties:
+      venue_capacity:
+        type: integer
+        format: int32
+      venue_id:
+        type: integer
+        format: int32
+      venue_img:
+        type: string
+      venue_location:
+        type: string
+      venue_name:
+        type: string

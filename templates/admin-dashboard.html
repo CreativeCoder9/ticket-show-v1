@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .venue-shows {
+    width: 50px;
+    display:inline;
+  }
+  .venue-show-info {
+    display:inline;
+  }
+</style>
+
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+   <div class="container">
+      <img src="../static/images/Ticket%20Show%20Logo.png" width="194" height="66">
+      <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+      <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navcol-1">
+         <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/admin"> Admin Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/add-show">Add a Show</a></li>
+            <li class="nav-item"><a class="nav-link" href="/add-venue">Add a Venue</a></li>
+         </ul>
+         <a class="btn btn-primary shadow" role="button" href="/logout">Logout</a>
+      </div>
+   </div>
+</nav>
+
+<!-- if no venue or show -->
+<section id="venues" class="mb-5 pb-5 min-vh-100">
+   {% if venues %}
+   <h2 class="text-center underline">Venue Info</h2>
+  {% for venue in venues%}
+   <div class="row mt-4 align-items-start pt-3">
+<!--      venue coulum -->
+      <div class="card col-3 mx-2">
+           <ul class="list-group p-2">
+              <li class="list-group-item fw-bold" aria-disabled="true" style="background-image:url('{{venue.venue_img}}'); background-size:cover;">{{venue.venue_name}}</li>
+              <li class="list-group-item">Place: {{venue.venue_location}}</li>  
+              <li class="list-group-item">Capacity: {{venue.venue_capacity}}</li>
+              <li class="list-group-item"><a href="{{url_for('update_venue',venue_id=venue.venue_id)}}" class="btn btn-warning">Edit this venue</a></li>
+              <li class="list-group-item"><a href="{{url_for('delete_venue', venue_id=venue.venue_id)}}" class="btn btn-danger">Delete it!</a></li>
+
+
+            </ul>
+        </div>
+<!--     Shows column -->
+     <div class="col-8 mb-5">
+       <div class="row">
+         {% if venue.shows%}
+         {% for show in venue.shows %}
+         <div class="col-4 my-1">
+         <div class="card p-1">
+           <img src="{{show.show_img}}" class="card-img-top" alt="...">
+           <div class="card-body">
+             <ul class="list-group">
+               <li class="list-group-item"><a href="{{url_for('update_show', show_id=show.show_id)}}">Edit this show!</a></li>
+               <li class="list-group-item"><a href="{{url_for('delete_show', show_id=show.show_id)}}">Delete this show!</a></li>
+             </ul>
+           </div>
+         </div>
+         </div>
+         {% endfor %}
+         {% else %}
+         <div class="alert alert-danger text-center" role="alert">
+  <p>No Shows found!</p>
+          </div>
+          <div class="col text-center">
+            <a class="btn btn-warning shadow m-1" role="button" href="/add-show">➕</a> 
+            <h6 class="fw-bold p-2">Add a Show!</h6>
+         </div>
+
+         {% endif %}
+       </div>
+     </div>
+   </div> 
+  {% endfor %}
+</section>
+{% else %}
+<section id="add-venue-show" class="">
+   <div class="container mt-5 pt-5">
+      <h3 class="text-center m-5 underline"> Add a Venue or a show!</h3>
+      <div class="row">
+         <div class="col text-center">
+            </spam><a class="btn btn-warning shadow m-1" role="button" href="/add-venue">➕</a>
+            <h6 class="fw-bold p-2">Add a Venue!</h6>
+         </div>
+         <div class="col text-center">
+            <a class="btn btn-warning shadow m-1" role="button" href="/add-show">➕</a> 
+            <h6 class="fw-bold p-2">Add a Show!</h6>
+         </div>
+      </div>
+   </div>
+</section>
+
+{% endif %}
+{% endblock %}

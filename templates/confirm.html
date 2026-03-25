@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .venue-shows {
+    width: 50px;
+    display:inline;
+  }
+  .venue-show-info {
+    display:inline;
+  }
+</style>
+
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+   <div class="container">
+<!--       <img src="../static/images/Ticket%20Show%20Logo.png" width="194" height="66"> -->
+      <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+      <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navcol-1">
+         <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/admin"> Admin Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/add-show">Add a Show</a></li>
+            <li class="nav-item"><a class="nav-link" href="/add-venue">Add a Venue</a></li>
+         </ul>
+         <a class="btn btn-primary shadow" role="button" href="/logout">Logout</a>
+      </div>
+   </div>
+</nav>
+<section id="add-venue-show" class="min-vh-100">
+  <form action="{{url}}" method="POST">
+   <div class="container mt-5 pt-5">
+      <h3 class="text-center m-5 underline"> Are you sure!</h3>
+      <div class="row">
+         <div class="col text-center">
+            </spam><button type="submit" class="btn btn-warning shadow m-1" role="button">✔️</button>
+            <h6 class="fw-bold p-2">Confirm</h6>
+         </div>
+         <div class="col text-center">
+            <a class="btn btn-warning shadow m-1" role="button" href="/">❌</a> 
+            <h6 class="fw-bold p-2">Cancel!</h6>
+         </div>
+      </div>
+   </div>
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+    <div class="container">
+        <img src="../static/images/Ticket%20Show%20Logo.png" width="194" height="66">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+        <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/dashboard"> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/bookings">Your Bookings!</a></li>
+            </ul>
+            <a class="btn btn-primary shadow" role="button" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<!-- user dashboard -->
+<section id="userDashboard" class="min-vh-100">
+  <div class="container-fluid text-center">
+    <div class="row">
+      <div class="col">
+            <h6>Hi! {{username}}!</h6>
+            <h1 class="fw-bold underline">Your Dashboard</h1>
+      </div>
+    </div>
+    {% if venues%}
+    <form class="d-flex justify-content-center flex-wrap" action="{{url_for('searchbytime')}}" method="post">
+      <div class="form-group">
+          <!-- <label for="showStartingTime"> Show starting time</label> -->
+         <input style="width: 315.594px;" required name="start_time" type="time" class= "form-control" id="showStartingTime">
+       </div>
+       <div class="form-group">
+          <!-- <label for="showEndingTime"> Show ending time</label> -->
+         <input style="width: 315.594px;" required name="end_time" type="time" class= "form-control" id="showEndingTime">
+       </div>
+       <div class="shadow-md mt-2"><button class="btn btn-primary" type="submit">Search by time</button></div>
+      </form>
+    {% for venue in venues%}
+    <div class="row pt-4 mt-2 mx-auto shadow d-flex justify-content-center pb-5 mb-5">
+      <h3 class="text-center fw-normal">{{venue.venue_name}}</h3>
+      <hr>
+      {% if venue.shows%}
+      {% for show in venue.shows %}
+      <div class="card col-3 m-2">
+            <img src="{{show.show_img}}" class="card-img-top" class="shadow">
+            <div class="card-body">
+                <span class="card-title fw-bold">{{show.show_name}}, </span><span class="fw-normal px-1">{{show.show_rating}}<i class="bi bi-star-fill" style="color:orange;"></i></span>
+                <p class="card-text">Tags: {{show.show_tags}}</p>
+                <a href="/bookings/{{show.show_id}}/confirm" class="btn btn-primary">Book Now!</a>
+            </div>
+        </div>
+      {% endfor %}
+      {% else %}
+      <div class=" text-center">
+        No show found!
+      </div>
+      {% endif %}
+    </div>
+    
+     {% endfor %}
+     {%else%}
+     <div class="alert alert-danger text-center" role="alert">
+      No venue or show found!
+      </div>
+     {% endif %}
+  </div>
+</section>
+{% endblock %}
